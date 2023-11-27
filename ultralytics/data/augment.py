@@ -853,7 +853,8 @@ class Format:
                  return_keypoint=False,
                  mask_ratio=4,
                  mask_overlap=True,
-                 batch_idx=True):
+                 batch_idx=True,
+                 grayscale=False):
         """Initializes the Format class with given parameters."""
         self.bbox_format = bbox_format
         self.normalize = normalize
@@ -862,6 +863,7 @@ class Format:
         self.mask_ratio = mask_ratio
         self.mask_overlap = mask_overlap
         self.batch_idx = batch_idx  # keep the batch indexes
+        self.grayscale = grayscale
 
     def __call__(self, labels):
         """Return formatted image, classes, bounding boxes & keypoints to be used by 'collate_fn'."""
@@ -897,7 +899,11 @@ class Format:
         """Format the image for YOLO from Numpy array to PyTorch tensor."""
         if len(img.shape) < 3:
             img = np.expand_dims(img, -1)
-        img = np.ascontiguousarray(img.transpose(2, 0, 1)[::-1])
+        if self.grayscale:
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            img = np.reshape(img, (1, img.shape[0], img.shape[1]))
+        else:
+            img = np.ascontiguousarray(img.transpose(2, 0, 1)[::-1])
         img = torch.from_numpy(img)
         return img
 

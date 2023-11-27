@@ -58,10 +58,16 @@ class YOLODataset(BaseDataset):
             raise ValueError("'kpt_shape' in data.yaml missing or incorrect. Should be a list with [number of "
                              "keypoints, number of dims (2 for x,y or 3 for x,y,visible)], i.e. 'kpt_shape: [17, 3]'")
         with ThreadPool(NUM_THREADS) as pool:
+            # renumber changes instance classes or deletes then if -1 is specified
+            renumber = {}
+            if isinstance(self.data, dict) :
+                renumber =  self.data['renumber']
+                renumber = renumber if isinstance(renumber, dict) else {}
+
             results = pool.imap(func=verify_image_label,
                                 iterable=zip(self.im_files, self.label_files, repeat(self.prefix),
                                              repeat(self.use_keypoints), repeat(len(self.data['names'])), repeat(nkpt),
-                                             repeat(ndim)))
+                                             repeat(ndim), repeat(renumber)))
             pbar = TQDM(results, desc=desc, total=total)
             for im_file, lb, shape, segments, keypoint, nm_f, nf_f, ne_f, nc_f, msg in pbar:
                 nm += nm_f
@@ -149,7 +155,8 @@ class YOLODataset(BaseDataset):
                    return_keypoint=self.use_keypoints,
                    batch_idx=True,
                    mask_ratio=hyp.mask_ratio,
-                   mask_overlap=hyp.overlap_mask))
+                   mask_overlap=hyp.overlap_mask,
+                   grayscale=self.grayscale))
         return transforms
 
     def close_mosaic(self, hyp):

@@ -3,6 +3,7 @@
 import os
 import random
 from pathlib import Path
+from PIL.ImageOps import grayscale
 
 import numpy as np
 import torch
@@ -93,7 +94,8 @@ def build_yolo_dataset(cfg, img_path, batch, data, mode='train', rect=False, str
         use_keypoints=cfg.task == 'pose',
         classes=cfg.classes,
         data=data,
-        fraction=cfg.fraction if mode == 'train' else 1.0)
+        fraction=cfg.fraction if mode == 'train' else 1.0,
+        grayscale=data.get('grayscale', False))
 
 
 def build_dataloader(dataset, batch, workers, shuffle=True, rank=-1):

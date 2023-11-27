@@ -9,6 +9,8 @@ from multiprocessing.pool import ThreadPool
 from pathlib import Path
 from typing import Optional
 
+from PIL.ImageOps import grayscale
+
 import cv2
 import numpy as np
 import psutil
@@ -60,7 +62,8 @@ class BaseDataset(Dataset):
                  pad=0.5,
                  single_cls=False,
                  classes=None,
-                 fraction=1.0):
+                 fraction=1.0,
+                 grayscale=False):
         """Initialize BaseDataset with given configuration and options."""
         super().__init__()
         self.img_path = img_path
@@ -77,6 +80,9 @@ class BaseDataset(Dataset):
         self.batch_size = batch_size
         self.stride = stride
         self.pad = pad
+        self.grayscale = grayscale
+        
+        assert self.grayscale == True
         if self.rect:
             assert self.batch_size is not None
             self.set_rectangle()
