@@ -120,9 +120,20 @@ class BasePredictor:
         not_tensor = not isinstance(im, torch.Tensor)
         if not_tensor:
             im = np.stack(self.pre_transform(im))
-            im = im[..., ::-1].transpose((0, 3, 1, 2))  # BGR to RGB, BHWC to BCHW, (n, 3, h, w)
-            im = np.ascontiguousarray(im)  # contiguous
+            if self.model.model.yaml.get('ch', 3) == 3:
+                im = im[..., ::-1].transpose((0, 3, 1, 2))  # BGR to RGB, BHWC to BCHW, (n, 3, h, w)
+                im = np.ascontiguousarray(im)  # contiguous
+            else:
+                images = []
+                for img in im:
+                    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                    img = np.reshape(img, (1, img.shape[0], img.shape[1]))
+                    images.append(img)
+                im = np.stack(images)
+                # im = im[..., ::-1].transpose((0, 1, 2, 3))  # BGR to RGB, BHWC to BCHW, (n, 3, h, w)
+                # im = np.ascontiguousarray(im)  # contiguous
             im = torch.from_numpy(im)
+            # print(im.shape)
 
         im = im.to(self.device)
         im = im.half() if self.model.fp16 else im.float()  # uint8 to fp16/32
@@ -243,7 +254,8 @@ class BasePredictor:
 
             # Warmup model
             if not self.done_warmup:
-                self.model.warmup(imgsz=(1 if self.model.pt or self.model.triton else self.dataset.bs, 3, *self.imgsz))
+                ch = 3 if self.model.model.yaml.get('ch', 3) == 3 else 1
+                self.model.warmup(imgsz=(1 if self.model.pt or self.model.triton else self.dataset.bs, ch, *self.imgsz))
                 self.done_warmup = True
 
             self.seen, self.windows, self.batch, profilers = 0, [], None, (ops.Profile(), ops.Profile(), ops.Profile())
