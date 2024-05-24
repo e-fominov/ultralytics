@@ -12,8 +12,18 @@ keywords: Ultralytics, YOLOv8, pose detection, COCO8-Pose dataset, dataset, mode
 
 Despite its manageable size of 210 images, tiger-pose dataset offers diversity, making it suitable for assessing training pipelines, identifying potential errors, and serving as a valuable preliminary step before working with larger datasets for pose estimation.
 
-This dataset is intended for use with [Ultralytics HUB](https://hub.ultralytics.com)
-and [YOLOv8](https://github.com/ultralytics/ultralytics).
+This dataset is intended for use with [Ultralytics HUB](https://hub.ultralytics.com) and [YOLOv8](https://github.com/ultralytics/ultralytics).
+
+<p align="center">
+  <br>
+  <iframe loading="lazy" width="720" height="405" src="https://www.youtube.com/embed/Gc6K5eKrTNQ"
+    title="YouTube video player" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+  <br>
+  <strong>Watch:</strong> Train YOLOv8 Pose Model on Tiger-Pose Dataset Using Ultralytics HUB
+</p>
 
 ## Dataset YAML
 
@@ -37,10 +47,10 @@ To train a YOLOv8n-pose model on the Tiger-Pose dataset for 100 epochs with an i
         from ultralytics import YOLO
 
         # Load a model
-        model = YOLO('yolov8n-pose.pt')  # load a pretrained model (recommended for training)
+        model = YOLO("yolov8n-pose.pt")  # load a pretrained model (recommended for training)
 
         # Train the model
-        results = model.train(data='tiger-pose.yaml', epochs=100, imgsz=640)
+        results = model.train(data="tiger-pose.yaml", epochs=100, imgsz=640)
         ```
 
     === "CLI"
@@ -70,17 +80,17 @@ The example showcases the variety and complexity of the images in the Tiger-Pose
         from ultralytics import YOLO
 
         # Load a model
-        model = YOLO('path/to/best.pt')  # load a tiger-pose trained model
+        model = YOLO("path/to/best.pt")  # load a tiger-pose trained model
 
         # Run inference
-        results = model.predict(source="https://www.youtube.com/watch?v=MIBAT6BGE6U&pp=ygUYdGlnZXIgd2Fsa2luZyByZWZlcmVuY2Ug" show=True)
+        results = model.predict(source="https://youtu.be/MIBAT6BGE6U", show=True)
         ```
 
     === "CLI"
 
         ```bash
         # Run inference using a tiger-pose trained model
-        yolo task=pose mode=predict source="https://www.youtube.com/watch?v=MIBAT6BGE6U&pp=ygUYdGlnZXIgd2Fsa2luZyByZWZlcmVuY2Ug" show=True model="path/to/best.pt"
+        yolo task=pose mode=predict source="https://youtu.be/MIBAT6BGE6U" show=True model="path/to/best.pt"
         ```
 
 ## Citations and Acknowledgments

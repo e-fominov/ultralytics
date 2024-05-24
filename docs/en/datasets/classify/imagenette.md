@@ -6,7 +6,7 @@ keywords: ImageNette dataset, Ultralytics, YOLO, Image classification, Machine L
 
 # ImageNette Dataset
 
-The [ImageNette](https://github.com/fastai/imagenette) dataset is a subset of the larger [Imagenet](http://www.image-net.org/) dataset, but it only includes 10 easily distinguishable classes. It was created to provide a quicker, easier-to-use version of Imagenet for software development and education.
+The [ImageNette](https://github.com/fastai/imagenette) dataset is a subset of the larger [Imagenet](https://www.image-net.org/) dataset, but it only includes 10 easily distinguishable classes. It was created to provide a quicker, easier-to-use version of Imagenet for software development and education.
 
 ## Key Features
 
@@ -37,10 +37,10 @@ To train a model on the ImageNette dataset for 100 epochs with a standard image 
         from ultralytics import YOLO
 
         # Load a model
-        model = YOLO('yolov8n-cls.pt')  # load a pretrained model (recommended for training)
+        model = YOLO("yolov8n-cls.pt")  # load a pretrained model (recommended for training)
 
         # Train the model
-        results = model.train(data='imagenette', epochs=100, imgsz=224)
+        results = model.train(data="imagenette", epochs=100, imgsz=224)
         ```
 
     === "CLI"
@@ -72,10 +72,10 @@ To use these datasets, simply replace 'imagenette' with 'imagenette160' or 'imag
         from ultralytics import YOLO
 
         # Load a model
-        model = YOLO('yolov8n-cls.pt')  # load a pretrained model (recommended for training)
+        model = YOLO("yolov8n-cls.pt")  # load a pretrained model (recommended for training)
 
         # Train the model with ImageNette160
-        results = model.train(data='imagenette160', epochs=100, imgsz=160)
+        results = model.train(data="imagenette160", epochs=100, imgsz=160)
         ```
 
     === "CLI"
@@ -93,10 +93,10 @@ To use these datasets, simply replace 'imagenette' with 'imagenette160' or 'imag
         from ultralytics import YOLO
 
         # Load a model
-        model = YOLO('yolov8n-cls.pt')  # load a pretrained model (recommended for training)
+        model = YOLO("yolov8n-cls.pt")  # load a pretrained model (recommended for training)
 
         # Train the model with ImageNette320
-        results = model.train(data='imagenette320', epochs=100, imgsz=320)
+        results = model.train(data="imagenette320", epochs=100, imgsz=320)
         ```
 
     === "CLI"

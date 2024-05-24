@@ -6,15 +6,15 @@ keywords: ultralytics docs, YOLOv8, export YOLOv8, YOLOv8 model deployment, expo
 
 # Intel OpenVINO Export
 
-<img width="1024" src="https://user-images.githubusercontent.com/26833433/252345644-0cf84257-4b34-404c-b7ce-eb73dfbcaff1.png" alt="OpenVINO Ecosystem">
+<img width="1024" src="https://github.com/RizwanMunawar/RizwanMunawar/assets/62513924/2b181f68-aa91-4514-ba09-497cc3c83b00" alt="OpenVINO Ecosystem">
 
-In this guide, we cover exporting YOLOv8 models to the [OpenVINO](https://docs.openvino.ai/) format, which can provide up to 3x [CPU](https://docs.openvino.ai/2023.0/openvino_docs_OV_UG_supported_plugins_CPU.html) speedup as well as accelerating on other Intel hardware ([iGPU](https://docs.openvino.ai/2023.0/openvino_docs_OV_UG_supported_plugins_GPU.html), [dGPU](https://docs.openvino.ai/2023.0/openvino_docs_OV_UG_supported_plugins_GPU.html), [VPU](https://docs.openvino.ai/2022.3/openvino_docs_OV_UG_supported_plugins_VPU.html), etc.).
+In this guide, we cover exporting YOLOv8 models to the [OpenVINO](https://docs.openvino.ai/) format, which can provide up to 3x [CPU](https://docs.openvino.ai/2024/openvino-workflow/running-inference/inference-devices-and-modes/cpu-device.html) speedup, as well as accelerating YOLO inference on Intel [GPU](https://docs.openvino.ai/2024/openvino-workflow/running-inference/inference-devices-and-modes/gpu-device.html) and [NPU](https://docs.openvino.ai/2024/openvino-workflow/running-inference/inference-devices-and-modes/npu-device.html) hardware.
 
 OpenVINO, short for Open Visual Inference & Neural Network Optimization toolkit, is a comprehensive toolkit for optimizing and deploying AI inference models. Even though the name contains Visual, OpenVINO also supports various additional tasks including language, audio, time series, etc.
 
 <p align="center">
   <br>
-  <iframe width="720" height="405" src="https://www.youtube.com/embed/kONm9nE5_Fk?si=kzquuBrxjSbntHoU"
+  <iframe loading="lazy" width="720" height="405" src="https://www.youtube.com/embed/kONm9nE5_Fk?si=kzquuBrxjSbntHoU"
     title="YouTube video player" frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowfullscreen>
@@ -35,16 +35,16 @@ Export a YOLOv8n model to OpenVINO format and run inference with the exported mo
         from ultralytics import YOLO
 
         # Load a YOLOv8n PyTorch model
-        model = YOLO('yolov8n.pt')
+        model = YOLO("yolov8n.pt")
 
         # Export the model
-        model.export(format='openvino')  # creates 'yolov8n_openvino_model/'
+        model.export(format="openvino")  # creates 'yolov8n_openvino_model/'
 
         # Load the exported OpenVINO model
-        ov_model = YOLO('yolov8n_openvino_model/')
+        ov_model = YOLO("yolov8n_openvino_model/")
 
         # Run inference
-        results = ov_model('https://ultralytics.com/images/bus.jpg')
+        results = ov_model("https://ultralytics.com/images/bus.jpg")
         ```
     === "CLI"
 
@@ -69,7 +69,7 @@ Export a YOLOv8n model to OpenVINO format and run inference with the exported mo
 1. **Performance**: OpenVINO delivers high-performance inference by utilizing the power of Intel CPUs, integrated and discrete GPUs, and FPGAs.
 2. **Support for Heterogeneous Execution**: OpenVINO provides an API to write once and deploy on any supported Intel hardware (CPU, GPU, FPGA, VPU, etc.).
 3. **Model Optimizer**: OpenVINO provides a Model Optimizer that imports, converts, and optimizes models from popular deep learning frameworks such as PyTorch, TensorFlow, TensorFlow Lite, Keras, ONNX, PaddlePaddle, and Caffe.
-4. **Ease of Use**: The toolkit comes with more than [80 tutorial notebooks](https://github.com/openvinotoolkit/openvino_notebooks) (including [YOLOv8 optimization](https://github.com/openvinotoolkit/openvino_notebooks/tree/main/notebooks/230-yolov8-optimization)) teaching different aspects of the toolkit.
+4. **Ease of Use**: The toolkit comes with more than [80 tutorial notebooks](https://github.com/openvinotoolkit/openvino_notebooks) (including [YOLOv8 optimization](https://github.com/openvinotoolkit/openvino_notebooks/tree/latest/notebooks/yolov8-optimization)) teaching different aspects of the toolkit.
 
 ## OpenVINO Export Structure
 
@@ -83,7 +83,7 @@ You can use these files to run inference with the OpenVINO Inference Engine.
 
 ## Using OpenVINO Export in Deployment
 
-Once you have the OpenVINO files, you can use the OpenVINO Runtime to run the model. The Runtime provides a unified API to inference across all supported Intel hardware. It also provides advanced capabilities like load balancing across Intel hardware and asynchronous execution. For more information on running the inference, refer to the [Inference with OpenVINO Runtime Guide](https://docs.openvino.ai/2023.0/openvino_docs_OV_UG_OV_Runtime_User_Guide.html).
+Once you have the OpenVINO files, you can use the OpenVINO Runtime to run the model. The Runtime provides a unified API to inference across all supported Intel hardware. It also provides advanced capabilities like load balancing across Intel hardware and asynchronous execution. For more information on running the inference, refer to the [Inference with OpenVINO Runtime Guide](https://docs.openvino.ai/2024/openvino-workflow/running-inference.html).
 
 Remember, you'll need the XML and BIN files as well as any application-specific settings like input size, scale factor for normalization, etc., to correctly set up and use the model with the Runtime.
 
@@ -95,7 +95,7 @@ In your deployment application, you would typically do the following steps:
 4. Prepare the input (image, text, audio, etc.).
 5. Run inference using `compiled_model(input_data)`.
 
-For more detailed steps and code snippets, refer to the [OpenVINO documentation](https://docs.openvino.ai/) or [API tutorial](https://github.com/openvinotoolkit/openvino_notebooks/blob/main/notebooks/002-openvino-api/002-openvino-api.ipynb).
+For more detailed steps and code snippets, refer to the [OpenVINO documentation](https://docs.openvino.ai/) or [API tutorial](https://github.com/openvinotoolkit/openvino_notebooks/blob/latest/notebooks/openvino-api/openvino-api.ipynb).
 
 ## OpenVINO YOLOv8 Benchmarks
 
@@ -114,7 +114,7 @@ The Intel® Data Center GPU Flex Series is a versatile and robust solution desig
 Benchmarks below run on Intel® Data Center GPU Flex 170 at FP32 precision.
 
 <div align="center">
-<img width="800" src="https://user-images.githubusercontent.com/26833433/253741543-62659bf8-1765-4d0b-b71c-8a4f9885506a.jpg">
+<img width="800" src="https://user-images.githubusercontent.com/26833433/253741543-62659bf8-1765-4d0b-b71c-8a4f9885506a.jpg" alt="Flex GPU benchmarks">
 </div>
 
 | Model   | Format      | Status | Size (MB) | mAP50-95(B) | Inference time (ms/im) |
@@ -153,7 +153,7 @@ Early reviews have praised the Arc™ series, particularly the integrated A770M 
 Benchmarks below run on Intel® Arc 770 GPU at FP32 precision.
 
 <div align="center">
-<img width="800" src="https://user-images.githubusercontent.com/26833433/253741545-8530388f-8fd1-44f7-a4ae-f875d59dc282.jpg">
+<img width="800" src="https://user-images.githubusercontent.com/26833433/253741545-8530388f-8fd1-44f7-a4ae-f875d59dc282.jpg" alt="Arc GPU benchmarks">
 </div>
 
 | Model   | Format      | Status | Size (MB) | metrics/mAP50-95(B) | Inference time (ms/im) |
@@ -188,7 +188,7 @@ Notably, Xeon® CPUs deliver high compute density and scalability, making them i
 Benchmarks below run on 4th Gen Intel® Xeon® Scalable CPU at FP32 precision.
 
 <div align="center">
-<img width="800" src="https://user-images.githubusercontent.com/26833433/253741546-dcd8e52a-fc38-424f-b87e-c8365b6f28dc.jpg">
+<img width="800" src="https://user-images.githubusercontent.com/26833433/253741546-dcd8e52a-fc38-424f-b87e-c8365b6f28dc.jpg" alt="Xeon CPU benchmarks">
 </div>
 
 | Model   | Format      | Status | Size (MB) | metrics/mAP50-95(B) | Inference time (ms/im) |
@@ -221,7 +221,7 @@ The Intel® Core® series is a range of high-performance processors by Intel. Th
 Benchmarks below run on 13th Gen Intel® Core® i7-13700H CPU at FP32 precision.
 
 <div align="center">
-<img width="800" src="https://user-images.githubusercontent.com/26833433/254559985-727bfa43-93fa-4fec-a417-800f869f3f9e.jpg">
+<img width="800" src="https://user-images.githubusercontent.com/26833433/254559985-727bfa43-93fa-4fec-a417-800f869f3f9e.jpg" alt="Core CPU benchmarks">
 </div>
 
 | Model   | Format      | Status | Size (MB) | metrics/mAP50-95(B) | Inference time (ms/im) |
@@ -259,16 +259,16 @@ To reproduce the Ultralytics benchmarks above on all export [formats](../modes/e
         from ultralytics import YOLO
 
         # Load a YOLOv8n PyTorch model
-        model = YOLO('yolov8n.pt')
+        model = YOLO("yolov8n.pt")
 
-        # Benchmark YOLOv8n speed and accuracy on the COCO128 dataset for all all export formats
-        results= model.benchmarks(data='coco128.yaml')
+        # Benchmark YOLOv8n speed and accuracy on the COCO8 dataset for all all export formats
+        results = model.benchmarks(data="coco8.yaml")
         ```
     === "CLI"
 
         ```bash
-        # Benchmark YOLOv8n speed and accuracy on the COCO128 dataset for all all export formats
-        yolo benchmark model=yolov8n.pt data=coco128.yaml
+        # Benchmark YOLOv8n speed and accuracy on the COCO8 dataset for all all export formats
+        yolo benchmark model=yolov8n.pt data=coco8.yaml
         ```
 
     Note that benchmarking results might vary based on the exact hardware and software configuration of a system, as well as the current workload of the system at the time the benchmarks are run. For the most reliable results use a dataset with a large number of images, i.e. `data='coco128.yaml' (128 val images), or `data='coco.yaml'` (5000 val images).

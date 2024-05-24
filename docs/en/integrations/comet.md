@@ -52,10 +52,11 @@ Then, you can initialize your Comet project. Comet will automatically detect the
 
 ```python
 import comet_ml
+
 comet_ml.init(project_name="comet-example-yolov8-coco128")
 ```
 
-*Note:* If you are using a Google Colab notebook, the code above will prompt you to enter your API key for initialization.
+If you are using a Google Colab notebook, the code above will prompt you to enter your API key for initialization.
 
 ## Usage
 
@@ -73,12 +74,12 @@ Before diving into the usage instructions, be sure to check out the range of [YO
 
         # train the model
         results = model.train(
-        data="coco128.yaml",
-        project="comet-example-yolov8-coco128",
-        batch=32,
-        save_period=1,
-        save_json=True,
-        epochs=3
+            data="coco8.yaml",
+            project="comet-example-yolov8-coco128",
+            batch=32,
+            save_period=1,
+            save_json=True,
+            epochs=3,
         )
         ```
 
@@ -132,6 +133,7 @@ You can control the number of image predictions that Comet ML logs during your e
 
 ```python
 import os
+
 os.environ["COMET_MAX_IMAGE_PREDICTIONS"] = "200"
 ```
 
@@ -141,7 +143,8 @@ Comet ML allows you to specify how often batches of image predictions are logged
 
 ```python
 import os
-os.environ['COMET_EVAL_BATCH_LOGGING_INTERVAL'] = "4"
+
+os.environ["COMET_EVAL_BATCH_LOGGING_INTERVAL"] = "4"
 ```
 
 ### Disabling Confusion Matrix Logging
@@ -150,6 +153,7 @@ In some cases, you may not want to log the confusion matrix from your validation
 
 ```python
 import os
+
 os.environ["COMET_EVAL_LOG_CONFUSION_MATRIX"] = "false"
 ```
 
@@ -159,6 +163,7 @@ If you find yourself in a situation where internet access is limited, Comet ML p
 
 ```python
 import os
+
 os.environ["COMET_MODE"] = "offline"
 ```
 

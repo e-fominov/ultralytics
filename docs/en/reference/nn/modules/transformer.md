@@ -7,44 +7,46 @@ keywords: Ultralytics, Ultralytics documentation, TransformerEncoderLayer, Trans
 
 !!! Note
 
-    This file is available at [https://github.com/ultralytics/ultralytics/blob/main/ultralytics/nn/modules/transformer.py](https://github.com/ultralytics/ultralytics/blob/main/ultralytics/nn/modules/transformer.py). If you spot a problem please help fix it by [contributing](https://docs.ultralytics.com/help/contributing/) a [Pull Request](https://github.com/ultralytics/ultralytics/edit/main/ultralytics/nn/modules/transformer.py) 🛠️. Thank you 🙏!
+    This file is available at [https://github.com/ultralytics/ultralytics/blob/main/ultralytics/nn/modules/transformer.py](https://github.com/ultralytics/ultralytics/blob/main/ultralytics/nn/modules/transformer.py). If you spot a problem please help fix it by [contributing](/help/contributing.md) a [Pull Request](https://github.com/ultralytics/ultralytics/edit/main/ultralytics/nn/modules/transformer.py) 🛠️. Thank you 🙏!
 
----
+<br><br>
+
 ## ::: ultralytics.nn.modules.transformer.TransformerEncoderLayer
+
 <br><br>
 
----
 ## ::: ultralytics.nn.modules.transformer.AIFI
+
 <br><br>
 
----
 ## ::: ultralytics.nn.modules.transformer.TransformerLayer
+
 <br><br>
 
----
 ## ::: ultralytics.nn.modules.transformer.TransformerBlock
+
 <br><br>
 
----
 ## ::: ultralytics.nn.modules.transformer.MLPBlock
+
 <br><br>
 
----
 ## ::: ultralytics.nn.modules.transformer.MLP
+
 <br><br>
 
----
 ## ::: ultralytics.nn.modules.transformer.LayerNorm2d
+
 <br><br>
 
----
 ## ::: ultralytics.nn.modules.transformer.MSDeformAttn
+
 <br><br>
 
----
 ## ::: ultralytics.nn.modules.transformer.DeformableTransformerDecoderLayer
+
 <br><br>
 
----
 ## ::: ultralytics.nn.modules.transformer.DeformableTransformerDecoder
+
 <br><br>

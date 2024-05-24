@@ -7,12 +7,14 @@ keywords: STrack, Ultralytics, BYTETracker, documentation, Ultralytics tracker, 
 
 !!! Note
 
-    This file is available at [https://github.com/ultralytics/ultralytics/blob/main/ultralytics/trackers/byte_tracker.py](https://github.com/ultralytics/ultralytics/blob/main/ultralytics/trackers/byte_tracker.py). If you spot a problem please help fix it by [contributing](https://docs.ultralytics.com/help/contributing/) a [Pull Request](https://github.com/ultralytics/ultralytics/edit/main/ultralytics/trackers/byte_tracker.py) 🛠️. Thank you 🙏!
+    This file is available at [https://github.com/ultralytics/ultralytics/blob/main/ultralytics/trackers/byte_tracker.py](https://github.com/ultralytics/ultralytics/blob/main/ultralytics/trackers/byte_tracker.py). If you spot a problem please help fix it by [contributing](/help/contributing.md) a [Pull Request](https://github.com/ultralytics/ultralytics/edit/main/ultralytics/trackers/byte_tracker.py) 🛠️. Thank you 🙏!
 
----
-## ::: ultralytics.trackers.byte_tracker.STrack
 <br><br>
 
----
+## ::: ultralytics.trackers.byte_tracker.STrack
+
+<br><br>
+
 ## ::: ultralytics.trackers.byte_tracker.BYTETracker
+
 <br><br>
