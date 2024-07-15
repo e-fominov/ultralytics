@@ -83,7 +83,6 @@ from ultralytics.utils import (
     WINDOWS,
     __version__,
     callbacks,
-    checks,
     colorstr,
     get_default_args,
     yaml_save,
@@ -226,7 +225,7 @@ class Exporter:
                 f"Using default 'data={self.args.data}'."
             )
         # Input
-        im = torch.zeros(self.args.batch, 1 if model.yaml.get('ch', 3) ==1 else 3, *self.imgsz).to(self.device)
+        im = torch.zeros(self.args.batch, 1 if model.yaml.get("ch", 3) == 1 else 3, *self.imgsz).to(self.device)
         file = Path(
             getattr(model, "pt_path", None) or getattr(model, "yaml_file", None) or model.yaml.get("yaml_file", "")
         )
