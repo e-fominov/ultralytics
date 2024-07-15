@@ -122,7 +122,7 @@ class BasePredictor:
         not_tensor = not isinstance(im, torch.Tensor)
         if not_tensor:
             im = np.stack(self.pre_transform(im))
-            if self.model.model.yaml.get('ch', 3) == 3:
+            if self.model.model.yaml.get("ch", 3) == 3:
                 im = im[..., ::-1].transpose((0, 3, 1, 2))  # BGR to RGB, BHWC to BCHW, (n, 3, h, w)
                 im = np.ascontiguousarray(im)  # contiguous
             else:
@@ -236,7 +236,7 @@ class BasePredictor:
 
             # Warmup model
             if not self.done_warmup:
-                ch = 3 if self.model.model.yaml.get('ch', 3) == 3 else 1
+                ch = 3 if self.model.model.yaml.get("ch", 3) == 3 else 1
                 self.model.warmup(imgsz=(1 if self.model.pt or self.model.triton else self.dataset.bs, ch, *self.imgsz))
                 self.done_warmup = True
 
