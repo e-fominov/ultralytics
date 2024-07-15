@@ -85,6 +85,7 @@ class YOLODataset(BaseDataset):
         )  # number missing, found, empty, corrupt, messages
         desc = f"{self.prefix}Scanning {path.parent / path.stem}..."
         total = len(self.im_files)
+        assert self.data is not None
         nkpt, ndim = self.data.get("kpt_shape", (0, 0))
         if self.use_keypoints and (nkpt <= 0 or ndim not in {2, 3}):
             raise ValueError(
@@ -93,10 +94,8 @@ class YOLODataset(BaseDataset):
             )
         with ThreadPool(NUM_THREADS) as pool:
             # renumber changes instance classes or deletes then if -1 is specified
-            renumber = {}
-            if isinstance(self.data, dict):
-                renumber = self.data["renumber"]
-                renumber = renumber if isinstance(renumber, dict) else {}
+            renumber = self.data.get("renumber", dict())
+            renumber = renumber if isinstance(renumber, dict) else dict()
 
             results = pool.imap(
                 func=verify_image_label,

@@ -107,7 +107,7 @@ def build_yolo_dataset(
         classes=cfg.classes,
         data=data,
         fraction=cfg.fraction if mode == "train" else 1.0,
-        grayscale=data.get("grayscale", False),
+        grayscale=data.get("grayscale", False) if data is not None else False,
     )
 
 
