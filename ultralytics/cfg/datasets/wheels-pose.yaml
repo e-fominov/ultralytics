@@ -11,4 +11,5 @@ flip_idx: [1, 0, 3, 2]
 # Classes
 names:
   0: vehicle 
+  1: wheel
 
